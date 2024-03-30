@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: "Cambria", serif;
+    /* font-family: "EB Garamond", serif; */
+   
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+.animate-slideIn {
+    animation: slideIn 0.5s forwards;
+}
+.scroll-container {
+    display: flex;
+    transition: transform 0.5s ease; 
+}
+
+.scroll-container > * {
+    flex-shrink: 0;
+}
+.next-logo {
+    transition: transform 0,6s ease-in;
+}
+
+.next-logo.clicked {
+    transform: translateX(6px);
+}
+.carousel {
+    width: calc(5 * 250px); /* Adjust width for 5 displayed books */
+  }
+  
+  .carousel-inner {
+    display: flex;
+    transform: translateX(0); /* Initial position */
+  }
+
+  .parallax {
+    /* Set the background image */
+    background-image: url('../assets/images/Back-Img.jpg');
+    /* Adjust the background positioning */
+    background-position: center;
+    /* Set background attachment to fixed for the parallax effect */
+    background-attachment: fixed;
+    /* Set a fixed background size */
+    background-size: cover;
+    /* Set a fixed background repeat */
+    background-repeat: no-repeat;
+    /* Set the height of the parallax section */
+    height: 100vh; /* Adjust according to your design */
+}
+
+
