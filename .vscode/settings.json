@@ -1,0 +1,9 @@
+{
+  "git.confirmEmptyCommits": false,
+  "git.confirmSync": false,
+  "git.detectSubmodules": false,
+  "git.enableStatusBarSync": false,
+  "git.enabled": true,
+  "explorer.excludeGitIgnore": false,
+  "git.decorations.enabled": false
+}
