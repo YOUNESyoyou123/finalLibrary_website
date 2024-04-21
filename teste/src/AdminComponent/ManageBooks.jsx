@@ -26,7 +26,7 @@ function ManageBooks() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [addbook]);
 
   function handleChanege(event) {
     setSearchQuery(event.target.value);

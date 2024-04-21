@@ -40,7 +40,7 @@ function ManageStudent() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [[showAddUser]]);
 
 
 

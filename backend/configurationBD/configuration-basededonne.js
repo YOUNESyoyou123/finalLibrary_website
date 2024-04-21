@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*const mongoose = require("mongoose");
 
 // Modify the connection string to connect to your MongoDB cluster
@@ -22,14 +21,3 @@ console.log("connected ") ;
     console.log(err)
 })
 module.exports = mongoose ; 
-
-=======
-const mongoose = require("mongoose") ; 
-mongoose.connect('mongodb://127.0.0.1:27017/Biblio').then(()=> { 
-console.log("connected ") ; 
-}).catch((err)=> { 
-    console.log(err)
-})
-module.exports = mongoose ; 
-
->>>>>>> 184bb55 (Add files via upload)
