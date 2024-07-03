@@ -6,7 +6,9 @@ const bookSchema = new mongoose.Schema({
     Namebook:{ type: String, required: true } , 
     Copy :{ type: Number, required: true } , 
     Author:{ type: String, required: true } ,
-    Edition:{ type: String, required: true } 
+    Edition:{ type: String, required: true } , 
+    Categorie:{ type: String, required: true }
+
    /* NameBook: { type: String, required: true },
     CopyAvailable: { type: String, required: true },
     

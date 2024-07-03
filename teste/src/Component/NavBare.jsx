@@ -11,6 +11,9 @@ import Close from "../assets/images/icon-close.svg"
 import Menu from "../assets/images/Menu.svg"
 import { Link } from "react-router-dom";
 import { createContext } from "react";
+import { PiUserCircleGearDuotone } from "react-icons/pi";
+import { FaRegCircleUser } from "react-icons/fa6";
+
 // Those three import from  the second  part of the  navigation bare 
 import CategorieLogo from "../assets/images/Categorie.svg"
 import Creators from "../assets/images/Creators.svg"
@@ -60,7 +63,7 @@ window.location.reload("false")
    <nav className={`h-[65px] z-50  sticky   top-0 bg-white shadow-md   border-b   `}>
         <div className="px-4   flex justify-between h-full items-center">
 
-        <div className="flex  ">
+        <div className="flex   ">
        <Link to="/" ><div className="flex"><img src={UniLogo} alt="UniLogo"   width={65}   className=" hidden sm:block "/>  </div></Link> 
         <img src={Menu} alt=""  className="size-8 mt-3 ml-6 sm:hidden "  onClick={handleClick} />
         <img src={UniLogo} alt=""  width={80} height={5} className="sm:hidden mt-1 ml-2  " />
@@ -69,11 +72,13 @@ window.location.reload("false")
     
 
         
-        <div className="sm:flex      hover:cursor-pointer	 sm:gap-4 font-semibold hidden ">
+        <div className="sm:flex   ml-24    hover:cursor-pointer	 sm:gap-4 font-semibold hidden ">
             <Link to="/"> <p className="hover:animate-pulse font-roboto hover:underline hover:underline-red hover:underline-offset-8 ease-out duration-600 px-1 text-text-lg	 font-medium  hover:text-red-700">Home</p></Link>
+            <Link to="/categorie2"> <p className="hover:animate-pulse font-roboto hover:underline hover:underline-red hover:underline-offset-8 ease-out duration-600 px-1 text-text-lg	 font-medium  hover:text-red-700">Catégorie</p></Link>
+
             <Link to='/Carte'><p className="hover:animate-pulse font-roboto hover:underline hover:underline-red hover:underline-offset-8 ease-out duration-600 px-1 text-text-lg	 font-medium  hover:text-red-700">Cart</p></Link>
-           <Link to='/categorie'>  <p className="hover:animate-pulse font-roboto hover:underline hover:underline-red hover:underline-offset-8 ease-out duration-600 px-1 text-text-lg	 font-medium  hover:text-red-700">My books</p></Link>
-            <p className="hover:animate-pulse font-roboto hover:underline hover:underline-red hover:underline-offset-8 ease-out duration-600 px-1 text-text-lg	 font-medium  hover:text-red-700"> Contact Us</p>
+           <Link to='/categorie'>  <p className="hover:animate-pulse font-roboto hover:underline hover:underline-red hover:underline-offset-8 ease-out duration-600 px-1 text-text-lg	 font-medium  hover:text-red-700">Books</p></Link>
+           <Link to="/ContactUs"><p className="hover:animate-pulse font-roboto hover:underline hover:underline-red hover:underline-offset-8 ease-out duration-600 px-1 text-text-lg	 font-medium  hover:text-red-700">Contact Us</p></Link>
         </div>
         {/* {for mobile application} */}
         <div className={`absolute bg-white h-screen left-0 w-1/2 top-0 pt-10 pl-3 z-10 ${menu ? "animate-slideIn" : "hidden"}`}>
@@ -81,22 +86,23 @@ window.location.reload("false")
         <button><img src={Close} onClick={handleClick} className="animate-slideIn " /></button>
         <li className="hover:font-extrabold hover:text-red-700 hover:animate-pulse  p-2 text-gray-500   ">Home</li>
         <li className="hover:font-extrabold hover:text-red-600 hover:animate-pulse font-bold p-2 text-gray-500 ">Cart</li>
-        <li className="hover:font-extrabold hover:text-red-700 hover:animate-pulse font-bold p-2 text-gray-500 ">idon't know why</li>
+        <li className="hover:font-extrabold hover:text-red-700 hover:animate-pulse font-bold p-2 text-gray-500 ">catégorie</li>
         <li className="hover:font-extrabold hover:text-red-700 hover:animate-pulse font-bold p-2 text-gray-500 ">Contact Us</li>
     </ul>
 </div>
 
 
-        <div className="  sm:right-0  sm:flex sm:gap-6 flex   right-0 mt-2 gap-3">
+        <div className="  sm:right-0  sm:flex sm:gap-4 flex   right-0  gap-3">
 
          {!cookies.access_token
             ?<Link to='/Login'><button className=" border-none px-5    h-10  rounded-lg border-bg-red hover:ring-red-400 hover:ring-1 ease-out duration-300 hover:bg-white hover:text-black bg-[#B80000]  text-white cursor-pointer tracking-wide">Login</button></Link>
             :<>
-            <FaUserCircle className="text-4xl ml-4  " onClick={handleProfileClick} />
+            <h1 className="pt-2 text-lg   "  ><span className=" text-red-500 text-xl font-bold ">Hello!</span> {window.localStorage.getItem("Name")}</h1>
+            <FaRegCircleUser  className="  mt-1 text-4xl"  onClick={handleProfileClick} />
             {profileOpen && (
                 <div className="absolute  z-10 right-0   mt-12">
-                    <ul className="pt-3 z-20 bg-slate-300">
-                        <li className="hover:text-red-700 hover:animate-pulse  hover:cursor-pointer p-2">My Account</li>
+                    <ul className="pt-3  border-solid	border-gray-800	 rounded-md		  border   -translate-x-4 z-20 bg-white">
+                    <Link to='/PersonalProfile'><li className="hover:text-red-700 hover:animate-pulse  hover:cursor-pointer p-2">My Account</li></Link>
                         <li className="hover:text-red-700 hover:animate-pulse  hover:cursor-pointer p-2   "><button onClick={logout}  >Logout</button></li>
 
                     </ul>

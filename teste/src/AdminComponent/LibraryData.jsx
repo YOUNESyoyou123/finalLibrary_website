@@ -138,8 +138,8 @@ function LibraryData() {
                   <div className="text-sm">returned</div>
                 </div>
                 <div className="flex  gap-2 w-10 items-center">
-                  <div className="border inline-block bg-[#FF8042]">
-                    <p className="text-[#FF8042]">word</p>
+                  <div className="border inline-block bg-[#43ca3e]">
+                    <p className="text-[#43ca3e]">word</p>
                   </div>
                   <div className="text-sm">Still</div>
                 </div>

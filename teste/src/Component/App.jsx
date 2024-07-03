@@ -14,7 +14,14 @@ import ManageBooks from '../AdminComponent/ManageBooks'
 import PrivateRoute from '../privateroute/privateroute';
 import Cart from './Cart';
 import ReturnTransiction from '../AdminComponent/returnTransaction';
-ReturnTransiction
+import PersonalProfile from '../Component/profile'; 
+import Categorie2 from '../Categorie2/categorie2';
+import Bookcategorie2 from '../bookcategorie2/bookcategorie2';
+import ContactUs from './ContactUs';
+import Foundbook from './foundbook';
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -22,10 +29,16 @@ function App() {
      
       
         <Routes>
+        
         <Route path="/" element={<Home/>}/>
           <Route path="/categorie" element={<Categorie />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/categorie2" element={<Categorie2/>} />
+          <Route path="/ContactUs" element={<ContactUs/>} />
+          <Route path="/Foundbook" element={<Foundbook/>} />
           <Route path="/booksName" element={<TrendBooks />} />
+          <Route path="/PersonalProfile" element={<PersonalProfile />} />
+          <Route path="/Bookcategorie2" element={<Bookcategorie2 />} />
           <Route path="/Carte" element={<Cart />} />
           <Route path='/componentb' element={<ComponentB></ComponentB>} ></Route>
           <Route path="/Admin/HomePage" element={<PrivateRoute Component={HomePage} />} /> {/* Single entry point for Admin routes */}

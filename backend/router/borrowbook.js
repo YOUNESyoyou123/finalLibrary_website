@@ -46,4 +46,20 @@ router.delete("/delete/:id", async (req, res) => {
   });
 
 
+
+  router.get('/getborrowedbyname/:Name', (req, res) => { 
+    const Name = req.params.Name; 
+    borrowbook.find({ Name: Name })
+      .then(data => {
+        res.json(data); 
+      })
+      .catch(error => {
+        console.log('Error fetching data: ' + error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      });
+  });
+
+
+  
+
 module.exports=router ; 

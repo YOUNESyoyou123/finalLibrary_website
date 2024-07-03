@@ -49,4 +49,25 @@ router.get("/etudiants", (req, res) => {
         });
 });
 
+
+router.put('/etudiants/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { Name, LastName, Idcart, PhoneNumber, Filliere, birthdayDate, Motpass } = req.body;
+    await Etudiant.findByIdAndUpdate(id, {
+      Name,
+      LastName,
+      Idcart,
+      PhoneNumber,
+      Filliere,
+      birthdayDate,
+      Motpass,
+    });
+    res.json({ message: 'Student updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 module.exports = router;

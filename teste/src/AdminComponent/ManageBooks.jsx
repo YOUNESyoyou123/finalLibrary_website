@@ -132,22 +132,21 @@ function ManageBooks() {
             <table className="w-full   flex-shrink flex-wrap overflow-y-scroll">
               <thead>
                 <tr className="w-screen bg-gray-200">
-                  <th className="w-32 py-3 ">ID</th>
-                  <th className="w-32 py-3 ">Book name</th>
-                  <th className="w-32 py-3 ">Auteur</th>
-                  <th className="w-32 py-3 ">Copies</th>
-                  <th className="w-32 py-3 ">id_subbook</th>
-                  <th className="py-3 w-32">Actions</th>
+                  <th className="w-28 py-3 ">ID</th>
+                  <th className="w-28 py-3 ">Book name</th>
+                  <th className="w-28 py-3 ">Auteur</th>
+                  <th className="w-28 py-3 ">Copies</th>
+                  <th className="py-3 w-28">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredBooks.map((book, index) => (
                   <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}>
-                    <td className="px-6 py-4">{book._id}</td>
-                    <td className="px-6 py-4">{book.Namebook}</td>
-                    <td className="px-6 py-4">{book.Author}</td>
-                    <td className="px-6 py-4">{book.Copy}</td>
-                    <td className="px-6 py-4">{book.id_subbook}</td>
+                    <td className="px-20 w-32  py-4">{book._id}</td>
+                    <td className="px-20 w-32  py-4">{book.Namebook}</td>
+                    <td className="px-20 w-32  py-4">{book.Author}</td>
+                    <td className="px-20 w-32  py-4">{book.Copy}</td>
+                    
                     <th className="w-32 py-3 flex justify-center items-center ml-5 ">
                       <button onClick={() => handleSeeBook(book)}>
                         <img src={SeeLogo} alt="" className="w-8" />

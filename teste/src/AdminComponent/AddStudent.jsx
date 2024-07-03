@@ -10,9 +10,12 @@ import "react-phone-number-input/style.css";
 import { useState } from "react";
 import { faker } from '@faker-js/faker';
 import axios from "axios";
+import { Upload, message, Button } from 'antd';
+
 
 
 function AddStudent() {
+  
   const [formValue, setFormValue] = useState({
     firstname: "",
     lastname: "",
@@ -41,6 +44,8 @@ function AddStudent() {
     setPhoneNumber(value);
   };
 
+
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     let isValid = true;
@@ -106,13 +111,13 @@ function AddStudent() {
           LastName: formValue.lastname,
           Idcart: formValue.Studentid,
           PhoneNumber: phoneNumber,
-          Filliere: formValue.Feild, // Make sure to send Filliere
+          Filliere: formValue.Field, // Make sure to send Filliere
           birthdayDate: laDate.toString(),
           Motpass: formValue.Studentid + laDate
         });
         if (response.status === 200) {
-
-          window.alert("Successfully added student!");
+          message.success("Successfully added student!")
+          
         }
       } catch (error) {
         console.error("Error adding student:", error);
@@ -176,20 +181,20 @@ function AddStudent() {
               </div>
               <h2 className="text-xl py-3">Field of Study</h2>
               <div className="border-green-500  flex flex-col w-full">
-                <select
-                  name="Feild"
-                  value={formValue.Feild}
-                  onChange={handleChange}
-                  className="border py-2     border-md  border-green-500   focus:outline-none rounded-md"
-                >
-                  <option value="Computer Sience" className="border-green-500 ">
-                    {" "}
-                    Computer Science
-                  </option>
-                  <option value="Mathematics"> Mathematics</option>
-                  <option value="Physics"> Physics</option>
-                  <option value="Chemistry"> Chemistry</option>
-                </select>
+              <select
+                name="Field" // Corrected name attribute
+                value={formValue.Field} // Corrected value
+                onChange={handleChange}
+                className="border py-2 border-md border-green-500 focus:outline-none rounded-md"
+>             
+                <option value="Computer Science" className="border-green-500">
+                  Computer Science
+                </option>
+                <option value="Mathematics"> Mathematics</option>
+                <option value="Physics"> Physics</option>
+                <option value="Chemistry"> Chemistry</option>
+              </select>
+
               </div>
               <div>
                 <h2 className="text-xl py-3 text-center">
@@ -209,11 +214,10 @@ function AddStudent() {
                       {errMsg.StudentidErr}
                     </p>
                   </div>
-                  <DatePicker
-                    selected={laDate}
-                    onChange={(date) => setNewDate(date)}
-                    placeholderText="DD/MM/YYYY"
-                    dateFormat="dd/MM/yyyy"
+                  <input
+                    type="text"
+                    onChange={(e) => setNewDate(e.target.value)}
+                    placeholder="Current year of study"
                     name="Date"
                     className="input-field border border-green-500 py-2 px-4 rounded-md focus:outline-none focus:border-green-500 placeholder-gray-400"
                   />

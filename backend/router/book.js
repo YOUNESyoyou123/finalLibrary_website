@@ -28,17 +28,17 @@ const upload = multer({ storage: mystorage });
 
 // Define route for adding a book with image upload
 router.post('/addbook', upload.single("image"), (req, res) => {
-    // Ensure req.file exists before accessing its properties
+   
     if (!req.file) {
         return res.status(400).send({ error: "No file uploaded" });
     }
 
-    // Validate other required fields from req.body
+    
     if (!req.body.NameBook || !req.body.CopyAvailable) {
         return res.status(400).send({ error: "NameBook and CopyAvailable are required" });
     }
 
-    // Create new book object with data
+    
     const newBook = new Book({
         NameBook: req.body.NameBook,
         CopyAvailable: req.body.CopyAvailable,
@@ -79,6 +79,11 @@ router.get('/images', (req, res) => {
         });
 });
 
+
+
+
+
+
 router.post('/upload', upload.single("file") , (req,res)=>{
     Book.create({image:req.file.filename}).then(
         result=>res.json(result)
@@ -92,7 +97,8 @@ router.post('/uploadd', upload.single("file"), (req, res) => {
       Namebook: req.body.NameBook,
       Copy:req.body.Copy,
       Author : req.body.Author,
-      Edition: req.body.Edition
+      Edition: req.body.Edition , 
+      Categorie:req.body.Categorie
     
     }).then(
       result => res.json(result)
@@ -102,6 +108,14 @@ router.get("/getImage",(req,res)=>{
     Book.find({}).then(users => res.json(users)).catch(err =>console.log(err))
 
 } )
+
+router.get("/getImagebycategorie/:categorie", (req, res) => {
+  const categorie = req.params.categorie; // Use req.params to get the URL parameter
+  Book.find({ Categorie: categorie }) // Assuming the category field in your database is named "Categorie"
+    .then((books) => res.json(books))
+    .catch((err) => console.log(err));
+});
+
 
 
 router.put('/books/:id', async (req, res) => {
@@ -119,6 +133,22 @@ router.put('/books/:id', async (req, res) => {
     }
   });
 
+  
+  router.put('/booksborrow/:id', async (req, res) => {
+    try {
+      const bookId = req.params.id;
+      const updatedCopy = req.body.Copy; // Assuming you're sending the updated number of copies in the request body
+  
+      // Find the book by ID and update the number of copies
+      const updatedBook = await Book.findByIdAndUpdate(bookId, { $inc: { Copy: updatedCopy } }, { new: true });
+  
+      res.json(updatedBook); // Respond with the updated book document
+    } catch (error) {
+      console.error('Error updating book:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
 
 
 

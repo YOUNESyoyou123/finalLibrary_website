@@ -1,61 +1,61 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
-  //state to store the data of the search feild
   const [searchValue, setSearchValue] = useState("");
-  //state take the books that are found
-  const [Errmsg, setErrmsg] = useState({msg:"",display:false});
-  //state to save the book the we are searching for
-  const [bookFound,setbookFound]=useState("")
+  const [Errmsg, setErrmsg] = useState({ msg: "", display: false });
+  const [bookFound, setBookFound] = useState("");
+  const navigate = useNavigate();
 
-  //creat a function to send  Data to the backend (the data is the search feild)
   const sendDataSearch = async () => {
-    await fetch("http://localhost:3000/api/search", {
-      //type of the http method is  post  because we are sending data (creating?)
-      method: "POST",
-      //the type of the data that we have send is
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Send searchValue in the request body
-      body: JSON.stringify({ searchValue }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          // Return the JSON data if response is OK
-          return response.json();
-        } else {
-          // Throw an error if response is not OK to the backend
-          throw new Error("Book not found");
-        }
-      })
-      .then((bookFounde) => setbookFound(bookFounde))
-      // .catch((error) => console.error(error));
-   
+    try {
+      const response = await fetch("http://localhost:3000/api/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ searchValue }),
+      });
+      if (!response.ok) {
+        throw new Error("Book not found");
+      }
+      const data = await response.json();
+      setBookFound(data);
+    } catch (error) {
+      console.error("Error searching for book:", error);
+      setBookFound("");
+      setErrmsg({ msg: "Book not found", display: true });
+    }
   };
-  // Function to handle input change and update searchValue state
+
   const handleChange = (e) => {
     setSearchValue(e.target.value);
-    sendDataSearch(); //i set here the sendDataSearch to  display a small segestion of the books in the home page maximum 5 books
   };
 
-  // Function to send search request to backend
-  // Function to handle search button click
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    if (searchValue.length == 0) {
-      setErrmsg({msg:"Please enter a book name to search",display:true});
-    } else if (searchValue.length > 100) {
-      setErrmsg({msg:"The book name must be under 100 characters",display:true});
-    } 
-    else{
-      setErrmsg({msg:"",display:false})
+    if (searchValue.length === 0) {
+      setErrmsg({ msg: "Please enter a book name to search", display: true });
+      return;
     }
-   
-    sendDataSearch();
-    console.log(bookFound)
+    if (searchValue.length > 100) {
+      setErrmsg({
+        msg: "The book name must be under 100 characters",
+        display: true,
+      });
+      return;
+    }
+    setErrmsg({ msg: "", display: false });
+
+    await sendDataSearch();
   };
-  
+
+  useEffect(() => {
+    if (bookFound) {
+      navigate("/Foundbook", { state: { bookFound } });
+    }
+  }, [bookFound, navigate]);
+
   return (
     <div>
       <form>
@@ -74,13 +74,11 @@ function Search() {
             value={searchValue}
             onChange={handleChange}
           />
-          
-
         </div>
       </form>
       <div className="flex justify-center ml-8 text-red-700 font-bold mt-2">
-            {Errmsg.display  && <p>{Errmsg.msg}</p>}
-            </div>
+        {Errmsg.display && <p>{Errmsg.msg}</p>}
+      </div>
     </div>
   );
 }

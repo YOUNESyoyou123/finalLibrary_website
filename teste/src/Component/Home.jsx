@@ -7,6 +7,8 @@ import { createContext } from "react";
 import { Hidden } from "@mui/material";
 import TrendsBooks from "./TrrendBook";
 import AboutUs from "./AboutUs";
+import NavBareAdmin from "../AdminComponent/NavBareAdmin";
+
 // ScrollContext passing the  value scrolled  to the about us   compt
 
 export const ScrollContext = createContext();
@@ -52,7 +54,10 @@ function Home(props) {
   }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div className='flex overflow-hidden  h-screen'>{localStorage.getItem("role") === "admin" && <NavBareAdmin />}
+
+    <div className="overflow-hidden w-screen relative   "  style={{ overflow: 'hidden' }}  >
+
       <Parallax pages={pages} ref={parallaxRef} style={{ overflow: Hidden }}>
         <ScrollContext.Provider
           value={{ gotoAboutUs, goToSearchBook, isVisible }}
@@ -83,7 +88,7 @@ function Home(props) {
           </ParallaxLayer>
         </ScrollContext.Provider>
       </Parallax>
-    </div>
+    </div> </div>
   );
 }
 

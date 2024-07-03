@@ -17,6 +17,9 @@ import useFetch from "use-http";
 import axios from 'axios';
 import { scroll } from "framer-motion/dom"
 import ManageStudent from "../AdminComponent/ManageStudent"
+import { Button, message } from 'antd';
+
+
 function Login() {
 //  const { post } = useFetch('http://localhost:3000');
 //const {get , post , response, loading , error} =useFetch('http://localhost:3000') ; 
@@ -29,6 +32,12 @@ const navigate = useNavigate();
 const toComponentB = (response ) => {
   navigate('/componentB', { state:{response}});
 };
+const { success, error, warning } = message;
+
+const [messageApi, contextHolder] = message.useMessage();
+
+
+
 const recieveInformation = (e) => {
 e.preventDefault()
 const values= {
@@ -82,7 +91,8 @@ password :inputpassword.current.value
         window.localStorage.setItem('Idcart', response.data.user[0].Idcart);
         window.localStorage.setItem('Filliere', response.data.user[0].Filliere);
         window.localStorage.setItem('role', response.data.user[0].role);
-        window.alert("login succefully")
+        success("Login successful")
+
         if(response.data.user[0].role==="admin"){
           navigate("/Admin/HomePage"); 
         }
@@ -92,27 +102,24 @@ password :inputpassword.current.value
          // Redirect to "/componentb" on successful login
 
       
-      } else {
+    }else {
+      warning("Username OR Password is Invalid")
         console.error("Login failed:", response.statusText);
-        // Handle login failure (e.g., display error message)
+        
       }
     } catch (error) {
+      warning("Username OR Password Is Invalid")
       console.error("Error during login:", error);
       // Handle network or server errors (e.g., display error message)
     }
   };
+
   
   return (
+    
     <>
 
-
-      <motion.div
-      className="younes"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 1,
-        delay: 0.5,}}>
+ 
       
       <div className="">
           <div className="flex justify-center items-center h-screen ">
@@ -130,6 +137,7 @@ password :inputpassword.current.value
               </h1>
               <form onSubmit={handleSubmit}  method="POST">
                 <div className="mb-4">
+                {contextHolder}
                   <input
                     type="text"
                     id="username"
@@ -190,7 +198,7 @@ password :inputpassword.current.value
       
       
       
-      </motion.div>
+    
     </>
   );
 }

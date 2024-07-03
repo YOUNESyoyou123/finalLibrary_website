@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Button, Popconfirm } from 'antd';
 
 function DataDashbord() {
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const[Books,setBooks] =useState([])
 
   const fetchData = async () => {
     setLoading(true);
@@ -22,7 +22,20 @@ function DataDashbord() {
     }
   };
 
-  const deleteBorrowedBook = async (bookId) => {
+  const handleUpdateCopies = async (bookId) => {
+    try {
+      const response = await axios.put(`http://localhost:3000/Book/booksborrow/${bookId}`, {
+        // Increment the number of copies by 1
+        Copy: 1 
+      });
+      console.log("well done "); 
+    } catch (error) {
+      console.error('Error updating copies:', error);
+      throw error;
+    }
+  };
+
+  const deleteBorrowedBook = async (bookId, studentId) => {
     try {
       // Send delete request to API endpoint
       await axios.delete(`http://localhost:3000/borrowbook/delete/${bookId}`);
@@ -30,6 +43,9 @@ function DataDashbord() {
       // Update state to remove the deleted book locally
       setBorrowedBooks(prevBooks => prevBooks.filter(book => book._id !== bookId));
 
+      // Update copies
+      await handleUpdateCopies(studentId);
+      
       console.log("Book deleted successfully");
     } catch (error) {
       console.error("Error deleting book:", error);
@@ -63,11 +79,7 @@ function DataDashbord() {
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <div className="flex gap-4 px-3 mt-2">
-            <p>All</p>
-            <p className="text-green-600">Returned</p>
-            <p className="text-red-600">Borrowed</p>
-          </div>
+    
         </div>
         {loading ? (
           <p>Loading...</p>
@@ -87,15 +99,23 @@ function DataDashbord() {
                 </tr>
               </thead>
               <tbody className="overflow-y-scroll">
-                {filteredBooks.map((data, index) => (
+                {filteredBooks.map((book, index) => (
                   <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}>
-                    <td className="py-2 px-4">{data.Idcart}</td>
-                    <td className="py-2 px-4">{data.Name}</td>
-                    <td className="py-2 px-4">{data.Namebook}</td>
+                    <td className="py-2 px-4">{book.Idcart}</td>
+                    <td className="py-2 px-4">{book.Name}</td>
+                    <td className="py-2 px-4">{book.Namebook}</td>
                     <td className="py-2 px-4 text-[#b80000]">Borrow</td>
-                    <td className="py-2 px-4">{data.Datefin}</td>
+                    <td className="py-2 px-4">{book.Datefin}</td>
                     <td className="py-2 px-4">
-                    <button className="text-[#b80000]" onClick={() => deleteBorrowedBook(data._id)}>Delete</button>
+                      <Popconfirm
+                        title="Delete Borrow Book"
+                        description="Are you sure to delete ?"
+                        okText={<p className="text-red-600 bg-white w-[40px] h-[100%] overflow-hidden ">Yes</p> }
+                        cancelText="No"
+                        onConfirm={() => deleteBorrowedBook(book._id, book.Id )}
+                      >
+                        <Button danger>Delete</Button>
+                      </Popconfirm>
                     </td>
                   </tr>
                 ))}

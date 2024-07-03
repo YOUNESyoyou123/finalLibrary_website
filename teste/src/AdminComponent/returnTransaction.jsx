@@ -7,12 +7,24 @@ import Lottie from "lottie-react";
 import AdminAnimation from "../assets/images/Admin.json";
 import DataDashbord from "./DataDashbord";
 import axios from "axios";
+import { Button, Popconfirm } from 'antd';
 
 function ReturnTransiction() {
 
+  const App = () => (
+    <Popconfirm
+      title="Delete the task"
+      description="Are you sure to delete this task?"
+      okText="Yes"
+      cancelText="No"
+    >
+      <Button danger>Delete</Button>
+    </Popconfirm>
+  );
+
+
+
   const handleData = async (e) => {
-   
-  
     try {
       const response = await axios.get("http://localhost:3000/borrowbook/getborrowed");
       console.log("Data retrieved successfully:", response.data);

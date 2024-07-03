@@ -98,17 +98,6 @@ password :inputpassword.current.value
     <>
 
 
-      <motion.div
-      className="younes"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 1,
-        delay: 0.5,
-  
-      }}
-      
-    >
       <div className="younes flex  min-h-full flex-rows    w-full       rounded-xl border-2  text-gray-900 shadow-sm ring-3 ring-inset ring-gray-300 placeholder:text-gray-400 h-screen">
         <div className="w-[55%]"> <img src={Pixelimage} alt=""  className="w-full  h-full border-2 max-sm:hidden max-md:hidden max-lg:visible" />
         </div>
@@ -166,7 +155,7 @@ password :inputpassword.current.value
 
 
       </div>
-      </motion.div>
+    
     </>
   );
 }

@@ -10,8 +10,8 @@ function HeroSection() {
   // console.log(setmenu)
   return (
     
-    <div c  lassName="flex justify-center px-10  ">
-      <div className="flex flex-col-reverse md:flex-row px-4 md:px-12    xl:scale-105">
+    <div className="flex justify-center px-10  ">
+      <div className="flex flex-col-reverse md:flex-row px-4 md:px-12    xl:scale-110">
         <div className="flex flex-col justify-center items-center md:items-start w-full sm:w-3/4 md:px-12 pt-2 md:pt-10 mt-10 md:mt-0 ">
           <h1 className="text-red-700 text-3xl font-semibold py-1 text-center md:text-left">
             Welcome To Library Lane
