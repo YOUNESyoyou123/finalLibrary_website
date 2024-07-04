@@ -101,7 +101,7 @@ function Edituser({ user }) {
     
     if (isValid) {
     try {
-      const response = await axios.put(`http://localhost:3000/etudiant/etudiants/${user._id}`, {
+      const response = await axios.put(`https://finallibrary-website.onrender.com/etudiant/etudiants/${user._id}`, {
         Name: formValue.firstname,
         LastName: formValue.lastname,
         Idcart: formValue.Studentid,

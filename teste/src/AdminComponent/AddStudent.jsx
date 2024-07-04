@@ -106,7 +106,7 @@ function AddStudent() {
     
     if (isValid) {
       try {
-        const response = await axios.post("http://localhost:3000/etudiant/etudiants", {
+        const response = await axios.post("https://finallibrary-website.onrender.com/etudiant/etudiants", {
           Name: formValue.firstname,
           LastName: formValue.lastname,
           Idcart: formValue.Studentid,

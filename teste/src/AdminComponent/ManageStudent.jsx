@@ -19,7 +19,7 @@ function ManageStudent() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/etudiant/etudiants");
+      const response = await axios.get("https://finallibrary-website.onrender.com/etudiant/etudiants");
       console.log("Data retrieved successfully:", response.data);
       setUsers(response.data);
     } catch (error) {

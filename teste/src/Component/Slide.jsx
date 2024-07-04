@@ -34,7 +34,7 @@ function Slide() {
      formData.append("Edition", edition);
  
      try {
-       const response = await axios.post('http://localhost:3000/Book/uploadd', formData, {
+       const response = await axios.post('https://finallibrary-website.onrender.com/Book/uploadd', formData, {
          headers: { 'Content-Type': 'multipart/form-data' },
        });
        console.log('Fichier uploadé avec succès');
@@ -60,7 +60,7 @@ function Slide() {
  
    const getImages = async () => {
      try {
-       const response = await axios.get('http://localhost:3000/Book/getImage');
+       const response = await axios.get('https://finallibrary-website.onrender.com/Book/getImage');
        console.log(response.data);
        setImages(response.data);
      } catch (error) {
@@ -121,7 +121,7 @@ function Slide() {
     <div className="slider-container mt-4 px- ml-2">
       <Slider {...settings}>
         {images.map((image) => (
-          <TrendBooks key={image._id} item={image} img={`http://localhost:3000/${image.image}`} />
+          <TrendBooks key={image._id} item={image} img={`https://finallibrary-website.onrender.com/${image.image}`} />
         ))}
       </Slider>
     </div>

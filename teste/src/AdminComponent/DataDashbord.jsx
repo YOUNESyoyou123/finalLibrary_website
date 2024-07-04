@@ -11,7 +11,7 @@ function DataDashbord() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:3000/borrowbook/getborrowed");
+      const response = await axios.get("https://finallibrary-website.onrender.com/borrowbook/getborrowed");
       console.log("Data retrieved successfully:", response.data);
       setBorrowedBooks(response.data);
     } catch (error) {
@@ -24,7 +24,7 @@ function DataDashbord() {
 
   const handleUpdateCopies = async (bookId) => {
     try {
-      const response = await axios.put(`http://localhost:3000/Book/booksborrow/${bookId}`, {
+      const response = await axios.put(`https://finallibrary-website.onrender.com/Book/booksborrow/${bookId}`, {
         // Increment the number of copies by 1
         Copy: 1 
       });
@@ -38,7 +38,7 @@ function DataDashbord() {
   const deleteBorrowedBook = async (bookId, studentId) => {
     try {
       // Send delete request to API endpoint
-      await axios.delete(`http://localhost:3000/borrowbook/delete/${bookId}`);
+      await axios.delete(`https://finallibrary-website.onrender.com/borrowbook/delete/${bookId}`);
 
       // Update state to remove the deleted book locally
       setBorrowedBooks(prevBooks => prevBooks.filter(book => book._id !== bookId));

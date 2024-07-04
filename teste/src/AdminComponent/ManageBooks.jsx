@@ -16,7 +16,7 @@ function ManageBooks() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/Book/booksq");
+      const response = await axios.get("https://finallibrary-website.onrender.com/Book/booksq");
       console.log("Data book successfully:", response.data);
       setBooks(response.data);
     } catch (error) {
@@ -39,7 +39,7 @@ function ManageBooks() {
 
   const handleDeleteBook = async (bookId, bookDetails) => {
     try {
-      await axios.delete(`http://localhost:3000/Book/books/${bookId}`);
+      await axios.delete(`https://finallibrary-website.onrender.com/Book/books/${bookId}`);
       // Update state to remove the deleted book
       setBooks(books.filter(book => book._id !== bookId));
       console.log("Book deleted successfully");

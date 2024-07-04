@@ -74,7 +74,7 @@ function ComponentB() {
 
   const clickemprunt = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/borrowbook/postborrow", {
+      const response = await axios.post("https://finallibrary-website.onrender.com/borrowbook/postborrow", {
         Name: localStorage.getItem('Name').toString(),
         Id: location.state.image._id,
         Idcart: localStorage.getItem('Idcart').toString(),
@@ -104,7 +104,7 @@ function ComponentB() {
 
   const demander = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/borrowbook/postborrow", {
+      const response = await axios.post("https://finallibrary-website.onrender.com/borrowbook/postborrow", {
         Name: localStorage.getItem('Name').toString(),
         Id: location.state.image._id,
         Idcart: localStorage.getItem('Idcart').toString(),
@@ -164,7 +164,7 @@ function ComponentB() {
 
   const handleUpdateCopies = async () => {
     try {
-      const response = await axios.put(`http://localhost:3000/Book/books/${location.state.image._id}`, {
+      const response = await axios.put(`https://finallibrary-website.onrender.com/Book/books/${location.state.image._id}`, {
         Copy: copies - 1 
       });
       console.log(response.data); 
@@ -176,7 +176,7 @@ function ComponentB() {
 
   const handleData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/borrowbook/getborrowedbyname/${window.localStorage.getItem("Name")}`);
+      const response = await axios.get(`https://finallibrary-website.onrender.com/borrowbook/getborrowedbyname/${window.localStorage.getItem("Name")}`);
       console.log("Data retrieved successfully:", response.data);
       setBook(response.data); 
     } catch (error) {
@@ -198,7 +198,7 @@ function ComponentB() {
           </div>
           <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center">
             <div className="flex justify-center py-5">
-              <img src={`http://localhost:3000/${location.state.image.image}`} alt="" className="w-48" />
+              <img src={`https://finallibrary-website.onrender.com/${location.state.image.image}`} alt="" className="w-48" />
             </div>
             <animated.div style={springProps}>
               <div className="text-start py-5 mt-1 rounded-xl sm:rounded-none px-6 w-full sm:py-3 sm:px-10 sm:pr-64 shadow-slate-150 bg-opacity-95">

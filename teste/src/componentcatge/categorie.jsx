@@ -16,7 +16,7 @@ function Categorie() {
 
   const getImages = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/Book/getImage');
+      const response = await axios.get('https://finallibrary-website.onrender.com/Book/getImage');
       setImages(response.data);
     } catch (error) {
       console.error('Erreur lors de la récupération des images :', error);
@@ -47,7 +47,7 @@ function Categorie() {
           {images.map((image) => (
             <div key={image._id} className='bg-white rounded-lg overflow-hidden ease-in duration-200 hover:border-solid hover:ring-1 hover:ring-green-700 hover:-translate-y-2'>
               <a onClick={() => cookies.access_token ? toComponentB(image) : navigate('/Login')}>
-                <img src={`http://localhost:3000/${image.image}`} className="w-full h-64" alt="Book" />
+                <img src={`https://finallibrary-website.onrender.com/${image.image}`} className="w-full h-64" alt="Book" />
               </a>
               <h4 className='text-black text-center'>{image.Namebook}</h4>
               <h2 className='text-black text-center opacity-40'>{image.Author}</h2>

@@ -67,7 +67,7 @@ function Foundbook() {
 
   const clickemprunt = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/borrowbook/postborrow", {
+      const response = await axios.post("https://finallibrary-website.onrender.com/borrowbook/postborrow", {
         Name: localStorage.getItem('Name').toString(),
         Id: bookFound._id,
         Idcart: localStorage.getItem('Idcart').toString(),
@@ -92,7 +92,7 @@ function Foundbook() {
 
   const handleUpdateCopies = async () => {
     try {
-      const response = await axios.put(`http://localhost:3000/Book/books/${bookFound._id}`, {
+      const response = await axios.put(`https://finallibrary-website.onrender.com/Book/books/${bookFound._id}`, {
         Copy: copies - 1
       });
       console.log(response.data);
@@ -103,7 +103,7 @@ function Foundbook() {
 
   const handleData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/borrowbook/getborrowedbyname/${localStorage.getItem("Name")}`);
+      const response = await axios.get(`https://finallibrary-website.onrender.com/borrowbook/getborrowedbyname/${localStorage.getItem("Name")}`);
       console.log("Data retrieved successfully:", response.data);
       setBook(response.data);
     } catch (error) {
@@ -124,7 +124,7 @@ function Foundbook() {
             </div>
             <div className="flex flex-col sm:flex-row sm:justify-center sm:items-center">
               <div className="flex justify-center py-5">
-                <img src={`http://localhost:3000/${bookFound?.image}`} alt="" className="w-48" />
+                <img src={`https://finallibrary-website.onrender.com/${bookFound?.image}`} alt="" className="w-48" />
               </div>
               <animated.div style={springProps}>
                 <div className="text-start py-5 mt-1 rounded-xl sm:rounded-none px-6 w-full sm:py-3 sm:px-10 sm:pr-64 shadow-slate-150 bg-opacity-95">
