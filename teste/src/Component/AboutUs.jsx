@@ -3,7 +3,7 @@ import HomeBg from "../assets/images/luisa-brimble-VfHoMBagDPc-unsplash.jpg";
 import { ScrollContext } from "./Home";
 import { useSpring } from "react-spring";
 import { animated } from "react-spring";
-import BooksImgAboutUs from "../assets/images/+1000booksimg.jpg";
+import BooksImgAboutUs from "../assets/images/booook.jpg";
 import AboutUsImg from "../assets/images/AboutUsImg.jpg";
 import { useEffect } from "react";
 
@@ -12,7 +12,7 @@ export default function AboutUs() {
   //only working in large devices remember to make responsive to oother devices Creat some break point and test with the width of devices
   const springProps = useSpring({
     opacity: isVisible ? 1 : 0,
-    transform: isVisible ? "translateX(0)" : "translateX(100%)", 
+    transform: isVisible ? "translateX(0)" : "translateX(100%)",
     config: { delay: 20000 },
   });
 
@@ -25,8 +25,6 @@ export default function AboutUs() {
     opacity: isVisible ? 1 : 0,
     from: { opacity: 0 },
   });
-
-
 
   // handlE Scrolle
 
